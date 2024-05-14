@@ -15,12 +15,12 @@ public class ReceiptService {
 
     public Receipt scanReceipt(MultipartFile file) throws IOException {
         InputStream inputStream = file.getInputStream();
-        File temp = File.createTempFile("target",",jpg");
-        temp.deleteOnExit();
+        File temp = File.createTempFile("target",".jpg");
         try(OutputStream outputStream = new FileOutputStream(temp)) {
             IOUtils.copy(inputStream, outputStream);
         }
         String output = ocrService.readContentsFromImage(temp);
+        temp.delete();
         return new Receipt(null, output, LocalDateTime.now());
     }
 }
