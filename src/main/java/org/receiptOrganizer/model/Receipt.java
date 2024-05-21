@@ -1,14 +1,34 @@
 package org.receiptOrganizer.model;
 
-import org.springframework.data.annotation.Id;
-import org.springframework.data.relational.core.mapping.Table;
-
 import java.time.LocalDateTime;
+import java.util.List;
 
-@Table("RECEIPT")
-public record Receipt(
-        @Id
-        Integer id,
-        String content,
-        LocalDateTime dateCreated) {
+public class Receipt {
+    Integer id;
+    String description;
+    List<String> items;
+    LocalDateTime dateCreated;
+
+    public Receipt(Integer id, String description, List<String> items, LocalDateTime dateCreated) {
+        this.id = id;
+        this.description = description;
+        this.items = items;
+        this.dateCreated = dateCreated;
+    }
+
+    public Integer getId() {
+        return id;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public List<String> getItems() {
+        return items;
+    }
+
+    public LocalDateTime getDateCreated() {
+        return dateCreated;
+    }
 }
