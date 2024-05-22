@@ -1,41 +1,34 @@
 package org.receiptOrganizer.model;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 public class Receipt {
     Integer id;
-    String name;
+    String description;
     List<String> items;
+    LocalDateTime dateCreated;
+
+    public Receipt(Integer id, String description, List<String> items, LocalDateTime dateCreated) {
+        this.id = id;
+        this.description = description;
+        this.items = items;
+        this.dateCreated = dateCreated;
+    }
 
     public Integer getId() {
         return id;
     }
 
-    public void setId(Integer id) {
-        this.id = id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
+    public String getDescription() {
+        return description;
     }
 
     public List<String> getItems() {
         return items;
     }
 
-    public void setItems(List<String> items) {
-        this.items = items;
-    }
-
-    @Override
-    public String toString() {
-        return "Receipt{" +
-                "name='" + name + '\'' +
-                ", items=" + items +
-                '}';
+    public LocalDateTime getDateCreated() {
+        return dateCreated;
     }
 }
