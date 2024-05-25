@@ -6,7 +6,6 @@ import org.bytedeco.tesseract.TessBaseAPI;
 import org.receiptOrganizer.config.AppConfig;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-
 import java.io.File;
 import java.io.IOException;
 
@@ -25,10 +24,8 @@ public class OCRService {
         BytePointer outText;
         TessBaseAPI api = new TessBaseAPI();
 
-        // Initialize tesseract-ocr with English, without specifying tessdata path
         if (api.Init(tessdataUri, "eng") != 0) {
-            System.err.println("Could not initialize tesseract.");
-            System.exit(1);
+            throw new IOException();
         }
 
         // Open input image with leptonica library

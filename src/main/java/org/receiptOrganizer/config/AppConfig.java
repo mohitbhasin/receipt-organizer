@@ -3,7 +3,6 @@ package org.receiptOrganizer.config;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.io.ResourceLoader;
-
 import java.io.IOException;
 
 @Configuration
@@ -17,7 +16,8 @@ public class AppConfig {
         try {
             tessdataUri = resourceLoader.getResource("classpath:./").getURI().getPath();
         } catch (IOException e) {
-            throw new RuntimeException(e);
+            // Cannot access classpath. TESSDATA_PREFIX environment variable will be used.
+            tessdataUri = null;
         }
         return tessdataUri;
     }
