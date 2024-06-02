@@ -31,4 +31,8 @@ public class Receipt {
     public LocalDateTime getDateCreated() {
         return dateCreated;
     }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
 }
