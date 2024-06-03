@@ -41,6 +41,7 @@ public class ReceiptController {
         Receipt receipt = receiptService.scanReceipt(file);
         ReceiptDAO receiptDAO = new ReceiptDAO(null, receipt.getDescription(), receipt.getDateCreated());
         receiptDAO = receiptRepository.save(receiptDAO);
+        receipt.setId(receiptDAO.id());
         List<ItemDAO> itemDAOList = new ArrayList<>();
         for(String item: receipt.getItems()) {
             itemDAOList.add(new ItemDAO(null, receiptDAO.id(), item));
