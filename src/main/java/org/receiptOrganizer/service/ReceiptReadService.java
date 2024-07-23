@@ -1,6 +1,5 @@
 package org.receiptOrganizer.service;
 
-import org.apache.tomcat.util.http.fileupload.IOUtils;
 import org.receiptOrganizer.model.Receipt;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -19,7 +18,7 @@ public class ReceiptReadService {
         InputStream inputStream = file.getInputStream();
         File temp = File.createTempFile("target",".jpg");
         try(OutputStream outputStream = new FileOutputStream(temp)) {
-            IOUtils.copy(inputStream, outputStream);
+            inputStream.transferTo(outputStream);
         }
         String output = ocrService.readContentsFromImage(temp);
         temp.delete();
